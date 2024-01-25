@@ -1,0 +1,78 @@
+{% extends "management/base.html" %}
+
+{% block liste_accounts_balance %}
+    <div class="grid grid-cols-3 gap-0" style="grid-template-columns: 25% 50% 25%;">
+        <div></div>
+        <form method="get" id="search-form" class="grid grid-cols-2 gap-0 my-10 border rounded-lg" style="grid-template-columns: 80% 20%; background-color: rgba(220, 220, 220, 0.767);">
+            <input name="query" class="py-3 px-4 w-1/1 text-left" style="border-top-left-radius: 5px; border-bottom-left-radius: 5px;" type="text" value="{{ query }}" placeholder="rechercher...">
+            <button type="submit"><i class="fa fa-search text-yellow-700 w-1/1 ml-0 text-2xl px-4" style="border-top-right-radius: 5px; border-bottom-right-radius: 5px;"></i></button>
+        </form>
+        <div></div>
+    </div>
+
+    <div class="mt-0 px-12 py-4 bg-gray-100 rounded-xl">
+        <h2 class="mb-6 text-xl text-center py-2" style="background-color: rgba(255, 255, 255, 0.486); color: rgba(0, 0, 0, 0.233);">Liste de balances comptes</h2>
+
+        <div class="grid grid-cols-3" style="grid-template-columns: 15% 70% 15%;">
+            <div class="" style="margin-left: 30px;">
+                {% for account_affair in account_affairs %}
+                    <p style="color: rgba(68, 167, 106, 0.932)">{{ account_affair.nom }}</p>
+                {% endfor %}
+            </div>
+            <div class="persons-container">
+                {% for item in persons_with_finances %}
+                    <div style="position: relative; width: 40%; float: right; margin-left: 3%; margin-bottom: 20px; border: none;">
+                        <a href="{% url 'management:transaction_details' item.person.id %}">
+                            <div class="rounded-lg" style="background-color: rgba(255, 255, 255, 0.925);">
+                                <div class="py-1 px-4" style="color: rgba(0, 0, 0, 0.658);">
+                                    <p class="text-sm text-center">Mr <strong class="text-sm" style="color: black">{{ item.person.first_name }}</strong></p>
+                                    <hr>
+                                    <div class="grid grid-cols-3 gap-0" style="grid-template-columns: 33% 33% 33%; text-align: center;">
+                                        <div>
+                                            <p class="text-sm">Credit</p> 
+                                            <p class="text-xl"><strong>{{ item.total_inputs|floatformat:2 }}</strong></p>    
+                                            
+                                        </div>
+                                        <div>
+                                            <p class="text-sm">Debit</p>
+                                            <p class="text-xl"><strong>{{ item.total_outputs|floatformat:2 }}</strong></p>
+                                        </div>
+
+                                        <div>
+                                            <p class="text-sm">Balance</p>
+                                            {% if item.total_balance > 0 %}
+                                                <p class="text-xl"><strong>{{ item.total_balance|floatformat:2 }}</strong></p>
+                                            {% elif item.total_inputs == 0 %}
+                                                <p class="text-xl"><strong>{{ item.total_balance|floatformat:2 }}</strong></p>
+                                            {% else %}
+                                                <p class="text-xl" style="color: rgba(255, 0, 0, 0.61)"><strong>{{ item.total_balance|floatformat:2 }}</strong></p>
+                                            {% endif %} 
+                                        </div>
+                                    </div>
+                                    <hr>
+        
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+            
+            <div class="" style="color: rgba(64, 226, 64, 0.842);">
+                <p class="text-sm text-center" style="color: rgba(0, 0, 0, 0.842);">Nombre comptes</p>
+                <p class="text-center" style="font-size: xx-large; font-weight: bold;"></p><br>
+                <p class="text-sm text-center" style="color: rgba(0, 0, 0, 0.842);">Agents bureau</p>
+                <p class="text-center" style="font-size: xx-large; font-weight: bold;"></p><br>
+                <p class="text-sm text-center" style="color: rgba(0, 0, 0, 0.842);">Locataires</p>
+                <p class="text-center" style="font-size: xx-large; font-weight: bold;"></p><br>
+                <p class="text-sm text-center" style="color: rgba(0, 0, 0, 0.842);">Ouvriers</p>
+                <p class="text-center" style="font-size: xx-large; font-weight: bold;"></p><br>
+                <p class="text-sm text-center" style="color: rgba(0, 0, 0, 0.842);">Salaires</p>
+                <p class="text-center" style="font-size: xx-large; font-weight: bold;"></p><br>
+            </div>
+        </div>
+
+        
+    </div>
+
+{% endblock %}

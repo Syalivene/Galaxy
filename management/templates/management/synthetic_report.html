@@ -1,0 +1,194 @@
+{% extends "management/base.html" %}
+
+
+{% block synthetic_report %}
+    <div  class="grid grid-cols-3 gap-0 text-center my-20" style="grid-template-columns: 15% 70% 15%;"  style="background-color: rgb(220, 220, 220);">
+        <div></div>
+        <div>
+            <div style="margin-top: 50px;">
+                <div class="grid grid-cols-3 gap-0" style="grid-template-columns: 40% 10% 40%;">
+                    <div style="padding-left: 50px;">
+                        <h2>Sommaire transactions</h2>
+                        <div>
+                            <canvas id="Rapport general" width="100"></canvas>
+                        </div>
+                    </div>
+                    <div></div>
+                    <div style="padding-left: 50px;">
+                        <h2>Sommaire ressources</h2>
+                        <div>
+                            <canvas id="Rapport ressources" width="100"></canvas>
+                        </div>
+                    </div>
+                </div>
+                
+                <script>
+                    // Assuming you're using these variables within a JavaScript block in your template
+                    var totalInput = {{ total_input }};
+                    var totalOutput = {{ total_output }};
+                    var ctx = document.getElementById('Rapport general').getContext('2d');
+                    var myChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: ['Entree', 'Sortie'],
+                            datasets: [{
+                                label: 'Entrees en USD', 
+                                data: [totalInput, totalOutput],
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                ],
+                                borderColor: [
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(54, 162, 235, 1)',
+                                ],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                </script>
+
+                <script>
+                    // Assuming you're using these variables within a JavaScript block in your template
+                    var Resources = {{ number_resources }};
+                    var Ouvriers = {{nombre_ouvriers}};
+                    var ctx = document.getElementById('Rapport ressources').getContext('2d');
+                    var myCharty = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: ['Resources', 'Ouvriers'],
+                            datasets: [{
+                                label: 'ressources', 
+                                data: [Resources, Ouvriers],
+                                backgroundColor: [
+                                    'rgba(75, 192, 192, 0.2)',
+                                    'rgba(75, 102, 242, 0.2)',
+                                ],
+                                borderColor: [
+                                    'rgba(75, 192, 192, 1)',
+                                    'rgba(75, 192, 102, 1)',
+                                ],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                </script>
+            </div>
+
+            <div class="grid grid-cols-7 gap-0 text-center" style="grid-template-columns: 17% 15% 15% 14% 5% 15% 19%; margin-top: 30px;">
+                <div>
+                    <div style="background-color: rgb(32, 32, 32); height: 50px; padding-top: 10px;"><p style="color:azure; font-weight: bold; font-size:large;">CATEGORIE</p></div>
+                    <div style="background-color: rgb(235, 235, 235); height: 50px; padding-top: 10px;"><p style="color:black; font-weight: bold; font-size:large;">Patron</p></div>
+                    <div style="background-color: rgb(153, 153, 153); height: 50px; padding-top: 10px;"><p style="color:black; font-weight: bold; font-size:large;">Bureau</p></div>
+                    <div style="background-color: rgb(235, 235, 235); height: 50px; padding-top: 10px;"><p style="color:black; font-weight: bold; font-size:large;">Autre</p></div>
+                </div>
+                <div>
+                    <div style="background-color: rgb(32, 32, 32); height: 50px; padding-top: 10px;"><p style="color:azure; font-weight: bold; font-size: large;">ENTREE</p></div>
+                    <div style="background-color: rgb(235, 235, 235); height: 50px; padding-top: 10px;"><p style="color:black; font-weight: bold; font-size:large;">{{total_compte_kavatsi_input|floatformat:2}}</p></div>
+                    <div style="background-color: rgb(153, 153, 153); height: 50px; padding-top: 10px;"><p style="color:black; font-weight: bold; font-size:large;">{{total_compte_bureau_input|floatformat:2}}</p></div>
+                    <div style="background-color: rgb(235, 235, 235); height: 50px; padding-top: 10px;"><p style="color:black; font-weight: bold; font-size:large;">{{total_compte_autre_input|floatformat:2}}</p></div>
+                </div>
+                <div>
+                    <div style="background-color: rgb(32, 32, 32); height: 50px; padding-top: 10px;"><p style="color:azure; font-weight: bold; font-size: large;">SORTIE</p></div>
+                    <div style="background-color: rgb(235, 235, 235); height: 50px; padding-top: 10px;"><p style="color:black; font-weight: bold; font-size:large;">{{total_compte_kavatsi_output|floatformat:2}}</p></div>
+                    <div style="background-color: rgb(153, 153, 153); height: 50px; padding-top: 10px;"><p style="color:black; font-weight: bold; font-size:large;">{{total_compte_bureau_output|floatformat:2}}</p></div>
+                    <div style="background-color: rgb(235, 235, 235); height: 50px; padding-top: 10px;"><p style="color:black; font-weight: bold; font-size:large;">{{total_compte_autre_output|floatformat:2}}</p></div>
+                </div>
+                <div>
+                    <div style="background-color: rgb(32, 32, 32); height: 50px; padding-top: 10px;"><p style="color:azure; font-weight: bold; font-size: large;">BALANCE $</p></div>
+                    <div style="background-color: rgb(235, 235, 235); height: 50px; padding-top: 10px;"><p style="color:black; font-weight: bold; font-size:large;">{{compte_kavatsi_balance|floatformat:2}}</p></div>
+                    <div style="background-color: rgb(153, 153, 153); height: 50px; padding-top: 10px;"><p style="color:black; font-weight: bold; font-size:large;">{{compte_bureau_balance|floatformat:2}}</p></div>
+                    <div style="background-color: rgb(235, 235, 235); height: 50px; padding-top: 10px;"><p style="color:black; font-weight: bold; font-size:large;">{{compte_autre_balance|floatformat:2}}</p></div>
+                </div>
+                <div></div>
+                <div>
+                    <div style="background-color: rgb(32, 32, 32); height: 50px; padding-top: 10px;"><p style="color:azure; font-weight: bold; font-size: large;">CATEGORIE</p></div>
+                    <div style="background-color: rgb(235, 235, 235); height: 50px; padding-top: 10px;"><p style="color:black; font-weight: bold; font-size:large;">Total Entree</p></div>
+                    <div style="background-color: rgb(153, 153, 153); height: 50px; padding-top: 10px;"><p style="color:black; font-weight: bold; font-size:large;">Total Sortie</p></div>
+                    <div style="background-color: rgb(235, 235, 235); height: 50px; padding-top: 10px;"><p style="color:black; font-weight: bold; font-size:large;">Total Caisse</p></div>
+                </div>
+                <div>
+                    <div style="background-color: rgb(32, 32, 32); height: 50px; padding-top: 10px;"><p style="color:azure; font-weight: bold; font-size: large;">SOMME $</p></div>
+                    <div style="background-color: rgb(235, 235, 235); height: 50px; padding-top: 10px;"><p style="color:black; font-weight: bold; font-size:large;">{{total_input|floatformat:2}}</p></div>
+                    <div style="background-color: rgb(153, 153, 153); height: 50px; padding-top: 10px;"><p style="color:black; font-weight: bold; font-size:large;">{{total_output|floatformat:2}}</p></div>
+                    <div style="background-color: rgb(235, 235, 235); height: 50px; padding-top: 10px;"><p style="color:black; font-weight: bold; font-size:large;">{{caisse|floatformat:2}}</p></div>
+                </div>
+            </div>
+            <hr style="color:azure;">
+
+            <div class="grid grid-cols-3 gap-0" style="grid-template-columns: 40% 10% 40%; margin-top: 100px;">
+                <div style="padding-left: 50px;">
+                    <h2>Sommaire Kili</h2>
+                    <div>
+                        <canvas id="Rapport kili" width="100"></canvas>
+                    </div>
+                </div>
+                <div></div>
+                <div style="padding-left: 50px;">
+                    <h2>Sommaire: {{total_kili_input}}</h2>
+                    <div>
+                        <canvas id="Rapport Kighali_Kaghumo" width="100"></canvas>
+                    </div>
+                </div>
+
+
+                <script>
+                    // Assuming you're using these variables within a JavaScript block in your template
+                    var Entree_1 = {{total_kili_input}};
+                    var Sortie_1 = {{total_kili_output}};
+                    var ctx = document.getElementById('Rapport kili').getContext('2d');
+                    var mythirdChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: ['Entree_1', 'Sortie_1'],
+                            datasets: [{
+                                label: 'Entree', 
+                                data: [Entree_1, Sortie_1],
+                                backgroundColor: [
+                                    'rgba(75, 192, 192, 0.2)',
+                                    'rgba(75, 102, 242, 0.2)',
+                                ],
+                                borderColor: [
+                                    'rgba(75, 192, 192, 1)',
+                                    'rgba(75, 192, 102, 1)',
+                                ],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                </script>
+            </div>
+
+            <div>
+                {% for locataire in locataire_nziapanda %}
+                    <ul>
+                        <p>{{ locataire.first_name }}</p>
+                    </ul>
+                {% endfor %}
+            </div>
+        </div>
+        <div></div>
+    </div>
+{% endblock %}
+

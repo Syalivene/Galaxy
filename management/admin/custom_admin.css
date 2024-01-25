@@ -1,0 +1,14 @@
+/* static/admin/custom_admin.css */
+#searchbar {
+    position: relative;
+}
+
+#searchbar:after {
+    content: '\f002';  /* FontAwesome search icon, you can use your own */
+    font-family: 'FontAwesome';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #777;
+}

@@ -1,0 +1,84 @@
+{% extends "management/base.html" %}
+
+
+{% block account_details %}
+    <div class="grid grid-cols-3 gap-0" style="grid-template-columns: 25% 50% 25%;">
+        <div></div>
+        <form method="get" id="search-form" class="grid grid-cols-2 gap-0 my-10 border rounded-lg" style="grid-template-columns: 80% 20%; background-color: rgba(220, 220, 220, 0.767);">
+            <input name="query" class="py-3 px-4 w-1/1 text-left" style="border-top-left-radius: 5px; border-bottom-left-radius: 5px;" type="text" value="{{ query }}" placeholder="rechercher...">
+            <button type="submit"><i class="fa fa-search text-yellow-700 w-1/1 ml-0 text-2xl px-4" style="border-top-right-radius: 5px; border-bottom-right-radius: 5px;"></i></button>
+        </form>
+        <div></div>
+    </div>
+
+    <div class="mt-0 px-12 py-4 bg-gray-100 rounded-xl">
+        <h2 class="mb-6 text-xl text-center py-2" style="background-color: rgba(255, 255, 255, 0.486); color: rgba(0, 0, 0, 0.233);">Compte Details</h2>
+
+        <div class="grid grid-cols-3" style="grid-template-columns: 15% 70% 15%;">
+            <div class="" style="margin-left: 30px;">
+                {% for account in persons %}
+                    <p style="color: rgba(68, 167, 106, 0.932)">{{ account.first_name }}</p>
+                {% endfor %}
+            </div>
+            <div class="persons-container">
+                    <div style="position: relative; width: 30%; float: right; margin-left: 3%; margin-bottom: 20px; border: none;">
+                        <a href="#">
+                            <div class="rounded-lg" style="background-color: rgba(255, 255, 255, 0.925);">
+                                <div class="py-1 px-4" style="color: rgba(0, 0, 0, 0.658);">
+                                    {% if account.sex == 'M' %}
+                                        <p class="text-sm text-center">Mr <strong class="text-lg" style="color: black">{{ account.first_name }}</strong></p>
+                                    {% else %}
+                                        <p class="text-sm text-center">Mme <strong class="text-lg" style="color: black">{{ account.first_name }}</strong></p>
+                                    {% endif %}
+
+                                    <hr>
+                                    {% if account.address == None %}
+                                        <p class="text-sm">Address: <strong style="color: rgba(255, 0, 0, 0.644);">Inconnue</strong></p>
+                                    {% elif account.address|length == 0 %}
+                                        <p class="text-sm">Address: <strong style="color: rgba(255, 0, 0, 0.644);">Inconnue</strong></p>
+                                    {% else %}
+                                        <p class="text-sm">Address: {{ account.address |slice:":25" }}</p>
+                                    {% endif %}
+                                    <p class="text-sm">Position: {{ account.get_position_display }}</p>
+                                    <p class="text-sm">Depuis {{ account.created_at }}</p>
+
+                                    {% if account.job_description == None %}
+                                        <p class="text-sm" style="color: rgba(255, 0, 0, 0.644);"> Job n'est pas connu</p>
+                                    {% elif account.job_description|length == 0 %}
+                                        <p class="text-sm" style="color: rgba(255, 0, 0, 0.644);"> Job n'est pas connu</p>
+                                    {% else %}
+                                        <p class="text-sm">{{ account.job_description |slice:":30" }}</p>
+                                    {% endif %}
+                                    <hr>
+
+                                    {% if account.mobile_number == None %}
+                                        <p class="text-sm text-center">Tel: <strong style="color: rgba(255, 0, 0, 0.644);">Aucun numero</strong></p>
+                                    {% elif account.mobile_number|length == 0 %}
+                                        <p class="text-sm text-center">Tel: <strong style="color: rgba(255, 0, 0, 0.644);">Aucun numero</strong></p>
+                                    {% else %}
+                                        <p class="text-sm text-center">Tel: <strong>{{ account.mobile_number }} | {{ account.whatsapp_number }}</strong></p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+            </div>
+            
+            <div class="" style="color: rgba(64, 226, 64, 0.842);">
+                <p class="text-sm text-center" style="color: rgba(0, 0, 0, 0.842);">Nombre comptes</p>
+                <p class="text-center" style="font-size: xx-large; font-weight: bold;">{{ persons|length }}</p><br>
+                <p class="text-sm text-center" style="color: rgba(0, 0, 0, 0.842);">Agents bureau</p>
+                <p class="text-center" style="font-size: xx-large; font-weight: bold;">{{ agents_bureau|length }}</p><br>
+                <p class="text-sm text-center" style="color: rgba(0, 0, 0, 0.842);">Locataires</p>
+                <p class="text-center" style="font-size: xx-large; font-weight: bold;">{{ locataires|length }}</p><br>
+                <p class="text-sm text-center" style="color: rgba(0, 0, 0, 0.842);">Ouvriers</p>
+                <p class="text-center" style="font-size: xx-large; font-weight: bold;">{{ labour|length }}</p><br>
+                <p class="text-sm text-center" style="color: rgba(0, 0, 0, 0.842);">Salaires</p>
+                <p class="text-center" style="font-size: xx-large; font-weight: bold;">8455</p><br>
+            </div>
+        </div>
+
+        
+    </div>
+
+{% endblock %}

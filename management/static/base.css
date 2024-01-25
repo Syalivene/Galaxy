@@ -1,0 +1,553 @@
+body{
+    position: absolute;
+    background-color: rgb(255, 255, 255, 0.1);
+    margin: 0px;
+    font-family: 'sans-serif', Poppins;
+    height: 100%;
+    width: 100%;
+    }
+ header{
+    position: absolute;
+    height: 210px;
+    width: 100%;
+    }
+ main{
+    position: absolute;
+    top: 210px;
+    width: 100%;
+    }
+ 
+ /*---------------------- POSITIONING AND STYLING ICONS IN THE BAR--------------*/
+ .upbar_materials{
+    position: fixed;
+    z-index: 9990;
+    background: linear-gradient(to right, #fff, #87CEFA, #87CEFA, #6A5ACD, #6A5ACD, #87CEFA, #87CEFA, #fff);
+    top: 0px;
+    height: 55px;
+    left: 0px;
+    width: 100%;
+    }
+ .bioagri_container{
+    position:relative;
+    top: -8px;
+    width: 200px;
+    background-color: rgb(29, 153, 9, 0.8);
+    left: 40%;
+    text-align: center;
+    border-top: 6px solid #333333;
+    border-bottom: 6px solid #333333;
+    border-right: 6px solid #333333;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+    }
+ .bioagripoultry{
+    font-size: 22px;
+    color: white;}
+ 
+ .my_logo img{
+    position: absolute;
+    z-index: 9999;
+    top: 55px;
+    left:0px;
+    width:120px;
+    height: 125px;
+    border-top-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+    }
+ .material-symbols-outlined a{
+    color: black;
+    text-decoration: none;
+    padding: 0px 20px;
+    }
+ .material-symbols-outlined-left{
+    position: absolute;
+    color: black;
+    left: 20px;
+    top: 13px;
+    }
+ .material-symbols-outlined-menu{
+    position: absolute;
+    color: black;
+    right: 215px;
+    width: 50px;
+    height: 40px;
+    top: 13px;
+    }
+ .material-symbols-outlined-menu a{
+    position: relative;
+    top: 0px;
+    color: black;
+    }
+ .menu_dropdown_list{
+    position: relative;
+    top: -10px;
+    left: -10px;
+    z-index: 555;
+    }
+ .menu_dropdown_list a{
+     color: #A9A9A9;
+     display: none;
+     cursor: pointer;
+     background-color: #333333;
+     font-size: 14px;
+     font-family: sans-serif;
+     width: 100px;
+     top: 10px;
+     left: -20px;
+     text-align: center;
+     padding: 5px 5px;
+     border-top: 4px solid black;
+     border-bottom: 4px solid black;
+    }
+ .menu_dropdown_list a:hover{
+    color: black;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: white;
+    }
+ 
+ .material-symbols-outlined-menu:hover .menu_dropdown_list a{
+    display: block;
+    }
+ .material-symbols-outlined-right{
+    position: absolute;
+    color: black;
+    right: 28px;
+    top: 13px;
+    }
+ .material-symbols-outlined-left a:hover{
+    background-color: white;
+    color: green;
+    }
+ .material-symbols-outlined-right a:hover{
+    background-color: white;
+    color: green;
+    }
+ .left_icons_text{
+    position: absolute;
+    top: 35px;
+    left: 15px;
+    }
+ .left_icons_text span{
+    padding: 0px 18px;
+    }
+ .right_icons_text{
+    position: absolute;
+    top: 35px;
+    right: 5px;
+    }
+ .right_icons_text span{
+    padding: 0px 18px;
+    }
+ /*----------- POSITIONING THE BAR--------------*/
+ .dropbuttons_bar{
+    position: relative;
+    top: 125px;
+    width: 88%;
+    height: 60px;
+    left: 110px;
+    border-top: 5px solid white;
+    border-bottom: 10px solid white;
+    border-left: 5px solid white;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    background-color: #333333;
+    }
+ /*-------------STYLING THE BUTTONS AND DROPDOWN LIST IN THE BAR--------------*/
+ 
+ .dropbuttons_bar span{
+    color: white;
+    font-size: 17px;
+    cursor: pointer;
+    border: none;
+    }
+ .dropbuttons_bar span:hover{
+    text-decoration: underline;
+    font-size: 18px;
+    }
+ .dropbuttons_bar a{
+     text-decoration: none;
+     color: #A9A9A9;
+     display: block;
+     cursor: pointer;
+     background-color: #333333;
+     font-size: 17px;
+     text-align: center;
+     padding: 5px 5px;
+     }
+ .dropbuttons_bar a:hover {
+     background-color: white;
+     color: black;
+     font-type: bold;
+     }
+ .dropdown_list{
+     display: none;
+     position: absolute;
+     left: 20%;
+     width: 150px;
+     border-top: 4px solid black;
+     border-bottom: 4px solid black;
+     }
+ /*---------------------- POSITIONING THE BUTTONS IN THE BAR--------------*/
+ .traditional_farming{
+    position: relative;
+    float: left;
+    top: 10px;
+    left: 2%;
+    text-align: center;
+    }
+ .modern_farming{
+    position: relative;
+    float: left;
+    top: 10px;
+    left: 10%;
+    text-align: center;
+    }
+ .commercial_farming{
+    position: relative;
+    float: left;
+    top: 10px;
+    left: 20%;
+    text-align: center;
+    }
+ .ecological_farming{
+    position: relative;
+    float: left;
+    top: 10px;
+    left: 30%;
+    text-align: center;
+    }
+ 
+ /*---------------------- DROPDOWN DISPLAY-------------*/
+ 
+ .traditional_farming:hover .dropdown_list{
+     display: block;
+     z-index: 20;
+     }
+ .modern_farming:hover .dropdown_list{
+     display: block;
+     z-index: 20;
+     }
+ .commercial_farming:hover .dropdown_list{
+     display: block;
+     z-index: 20;
+     }
+ .ecological_farming:hover .dropdown_list{
+     display: block;
+     z-index: 20;
+     }
+ /*---------------------- SEARCH BOX-------------*/
+ .form_search{
+    position: absolute;
+    display: inline-block;
+    top: 20%;
+    right: 5%;
+    }
+ .form_search input[type="text"]{
+   padding: 8px 10px;
+   font-size: 16px;
+   border: 2px solid #87CEFA;
+   color:black;
+   border-radius: 20px;
+   background-color: white;
+   width: 300px;
+ }
+ .form_search button[type="submit"] {
+   position: absolute;
+   top: 2px;
+   right: 2px;
+   border: none;
+   background-color: rgb(29, 153, 9, 0.8);
+   color: white;
+   padding: 8px 15px;
+   font-size: 20px;
+   border-radius: 20px;
+   cursor: pointer;
+ }
+ .animate_button {
+   transition: all 0.2s ease;
+ }
+ .animate_button:hover {
+   transform: translatex(-6px);
+   font-size: 20px;
+   box-shadow: 0 0px 0px 10px rgba(100, 100, 0, 0.3);
+ }
+ 
+ 
+ /*-------------STYLING THE BIRDS BUTTONS--------------*/
+ .birds{
+    position: relative;
+    display: flex;
+    flex-wrap: nowrap; /* Prevent buttons from wrapping to the next line */
+    overflow: hidden; /* Hide buttons that overflow the container */
+    }
+ .birds button {
+   margin: 5px 30px;
+   text-align: center;
+   background-color: rgb(29, 153, 9, 0.8);
+   padding: 5px;
+   color: white;
+   border: none;
+   font-size: 17px;
+   border-radius: 5px;
+   animation-name: flow_left;
+   animation-duration: 150s;
+   /*animation-fill-mode: both;*/
+   animation-iteration-count: infinite;
+   animation-direction: reverse;
+   animation-timing-function: linear;
+ }
+ 
+ @keyframes flow_left{
+    from{ transform: translateX(-5000px)}
+    to{ transform: translateX(300px)}
+    }
+ 
+ .birds button:hover{
+    cursor: pointer;
+    background-color: #87CEFA;
+    color: black;
+    }
+ 
+ /*-------------STYLING THE ARTICLE TEXT BOX--------------*/
+ .article_box{
+   position: relative;
+   width: 400px;
+   height: 680px;
+   left: 2%;
+   float: left;
+   margin-bottom: -20px;
+   margin-left: 25px;
+   border: none;
+    }
+ .article_box_image{
+    position: relative;
+    left: 0px;
+    width: 100%;
+    height: 320px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    }
+ .article_box_text{
+   position: relative;
+   left: 0px;
+   top: -10px;
+   width: 370px;
+   height: 200px;
+   padding-left: 15px;
+   padding-right: 15px;
+   padding-top: 0px;
+   background-color: white;
+   }
+ .article_box_text p{
+    font-size: 17px;
+    text-align: justify;
+    }
+ .article_box_text h2{
+    cursor: pointer;
+    font-size: 22px;
+    color: black;
+    }
+ .article_box_text h2:hover{
+    color: #009966;
+    text-decoration: underline;
+    }
+ .category_timesince{
+    border-top: 1px solid #A9A9A9;
+    }
+ .article_box_icons{
+   position: relative;
+   width: 370;
+   top: -25px;
+   height: 60px;
+   border-top: 1px solid #A9A9A9;
+   border-bottom: 2px solid #A9A9A9;
+   background-color: white;
+   }
+ .article_navigation_icons{
+   position: relative;
+   text-align: center;
+    }
+ .article_navigation_text span{
+    padding: 0px 8px;
+    }
+ .article_navigation_text{
+   position: relative;
+   text-align: center;
+   }
+ .article_navigation_icons a{
+    padding: 0px 10px;
+    }
+ .article_navigation_icons a:hover{
+    color: green;
+    font-size: 30px;
+    }
+ 
+ 
+ 
+ /*-------------STYLING THE FOOTER BOX--------------*/
+ .footer_bar{
+    position: absolute;
+    bottom: -500px;
+    width: 100%;
+    height: 500px;
+    background-color: #333333;
+    box-sizing: border-box;
+    }
+ .column_left{
+    position: relative;
+    margin-top: 150px;
+    width: 25%;
+    margin-left: 5%;
+    }
+ .column_left a{
+    position: relative;
+    display: block;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    padding: 5px 5px;
+    }
+ .footer_bar h3{
+    color: white;
+    text-align: center;
+    }
+ .column_center{
+    position: relative;
+    margin-top: -230px;
+    width: 40%;
+    margin-left: 30%;
+    }
+ .form_footer{
+    position: relative;
+    padding-bottom: 150px;
+    }
+ .form_footer input[type="text"]{
+    position: absolute;
+    top: 40px;
+    left: 10%;
+    height: 30px;
+    width: 80%
+    }
+ .form_footer button[type="submit"]{
+    position: absolute;
+    bottom: 0px;
+    left: 30%;
+    width: 40%;
+    height: 30px;
+    border: 1px solid black;
+    border-radius: 20px;
+    text-align: center;
+    }
+ .form_footer button[type="submit"]:hover{
+    cursor: pointer;
+    background-color: #87CEFA;
+    }
+ .column_right{
+    position: relative;
+    margin-top: -215px;
+    width: 25%;
+    margin-left: 70%;
+    text-align: center;
+    color: white;
+    }
+ .column_right p{
+    padding: 10px 5px;
+    }
+ .font_awesome_icons a{
+    color: white;
+    padding: 5% 2%;
+    font-size: 150%;
+    }
+ .copyright{
+    position: relative;
+    text-align: center;
+    color: white;
+    top: 70px;
+    }
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ /*---------------------- CARD BODY--------------*/
+ .card-body{
+    position: relative;
+    width: 52%;
+    float: left;
+    left: 5%;
+    top: -140px;
+    }
+ .card-text{
+    font-family: Lora;
+    font-size: 17px;
+    text-align: justify;
+    border-left: 2px dotted green;
+    padding-left: 10px;
+    }
+ .about_card-body{
+    position: relative;
+    width: 52%;
+    float: left;
+    margin-left: 5%;
+    top: -140px;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    padding-bottom: 50px;
+    }
+ .about_card-body p{
+    font-family: Lora;
+    font-size: 17px;
+    text-align: justify;
+    border-left: 2px dotted green;
+    padding-left: 10px;
+    padding-right: 15px;
+    }
+ .about_card-body a{
+    color: green;
+    text-decoration: none;
+    font-weight: bold;
+    }
+ /*---------------------- SIDEBAR--------------*/
+ .sidebar{
+    position: relative;
+    background-color: rgb(0, 0, 0, 0.1);
+    border-radius: 10px;
+    float: left;
+    top: -140px;
+    margin-left: 120px;
+    width: 450px;
+    }
+ .sidebar_related_topics h3{
+    position: relative;
+    left: 50px;
+    }
+ .related_topics_items{
+    position: relative;
+    width: 300px;
+    height: 50px;
+    left: 50px;
+    padding-top: 15px;
+    margin-bottom: 10px;
+    }
+ .related_topics_items img{
+    position: absolute;
+    top: 0px;
+    width: 70px;
+    height: 100%;
+    float: left;
+    }
+ .related_topics_items a{
+    position: absolute;
+    float: left;
+    left: 80px;
+    top: -10px;
+    }
+ .section_topics{
+    position: relative;
+    left: 50px;
+    }

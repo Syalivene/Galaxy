@@ -1,0 +1,18 @@
+ {% extends "management/base.html" %}
+
+  {% block welcome %}  
+    <div class="grid grid-cols-3 gap-0" style="grid-template-columns: 15% 70% 15%;">
+
+        <div style="background-color: rgb(220, 220, 220);"></div>
+
+        <div class="container" style="padding-top: 100px; padding-bottom: 100px;">
+            <button class="px-20 py-4 bg-teal-200 rounded-lg m-4 text-center"><a style="color: rgb(25, 25, 25);" href="admin">Systeme</a></button>
+            <button class="px-20 py-4 bg-teal-200 rounded-lg m-4 text-center"><a style="color: rgb(25, 25, 25);" href="{% url 'management:synthetic_report' %}">Rapport</a></button>   
+            <button class="px-20 py-4 bg-teal-200 rounded-lg m-4 text-center"><a style="color: rgb(25, 25, 25);" href="{% url 'management:accounts' %}">Comptes</a></button>       
+        </div>
+
+        <div style="background-color: rgb(220, 220, 220);"></div>
+
+    </div>
+
+{% endblock %}

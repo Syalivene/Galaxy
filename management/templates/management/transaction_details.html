@@ -1,0 +1,157 @@
+{% extends "management/base.html" %}
+
+
+{% block account_details %}
+    <div class="grid grid-cols-3 gap-0" style="grid-template-columns: 25% 50% 25%;">
+        <div></div>
+        <form method="get" id="search-form" class="grid grid-cols-2 gap-0 my-10 border rounded-lg" style="grid-template-columns: 80% 20%; background-color: rgba(220, 220, 220, 0.767);">
+            <input name="query" class="py-3 px-4 w-1/1 text-left" style="border-top-left-radius: 5px; border-bottom-left-radius: 5px;" type="text" value="{{ query }}" placeholder="rechercher...">
+            <button type="submit"><i class="fa fa-search text-yellow-700 w-1/1 ml-0 text-2xl px-4" style="border-top-right-radius: 5px; border-bottom-right-radius: 5px;"></i></button>
+        </form>
+        <div></div>
+    </div>
+
+    <div class="mt-0 px-12 py-4 bg-gray-100 rounded-xl">
+        <h2 class="mb-6 text-xl text-center py-2" style="background-color: rgba(255, 255, 255, 0.486); color: rgba(0, 0, 0, 0.233);">Details Transaction pour {{ transaction_detail.first_name }}</h2>
+
+        <div class="grid grid-cols-3" style="grid-template-columns: 15% 70% 15%;">
+            <div class="" style="margin-left: 30px;">
+                {% for account in persons %}
+                    <p style="color: rgba(68, 167, 106, 0.932)">{{ account.first_name }}</p>
+                {% endfor %}
+            </div>
+            <div class="persons-container">
+                    <div style="width: 100%; margin-bottom: 20px; border: none;">
+                        <div class="grid grid-cols-2 gap-3" style="grid-template-columns: 50% 50%;">
+                            <div>
+                                <h2 class="mb-6 text-xl text-center py-2" style="background-color: rgba(255, 255, 255, 0.486); color: rgba(0, 0, 0, 0.233);">{{ outputs|length }} | {{ finance_outputs|length }} Credits: <strong>$ {{ sum_outputs|floatformat:2 }} | {{ sum_finance_outputs|floatformat:2 }}</strong></h2>
+                                {% for input in outputs %}
+                                <a href="#">
+                                    <div class="rounded-lg" style="background-color: rgba(255, 255, 255, 0.925);">
+                                        <br><hr>
+                                        <div class="py-1 px-4 grid grid-cols-2 gap-0" style="grid-template-columns: 80% 20%; color: rgba(0, 0, 0, 0.658);">
+                                            <div>
+                                                {% if input.amount_in_usd == 0 %}
+                                                    <p class="text-sm"><strong style="color: rgba(255, 0, 0, 0.644);">Initialisation compte</strong></p>
+                                                {% elif input.amount_in_usd < 0 %}
+                                                    <p class="text-sm"><strong style="color: rgba(255, 0, 0, 0.644);">Erreur !</strong></p>
+                                                {% else %}
+                                                    <p class="text-sm">Versement reussi</p>
+                                                {% endif %}
+                                                <p class="text-sm">Justification: {{ input.get_justification_display }}</p>
+                                                <p class="text-sm">Depuis {{ input.created_at }}</p>
+                                            </div>
+                                            <div>
+                                                <p><strong class="text-xl" style="color: black;">$ {{ input.amount_in_usd }}</strong></p>
+                                                <p class="text-center">{{ input.code }}</strong></p>
+                                            </div>
+                                        </div>
+                                        <hr><br>
+                                    </div>
+                                </a>
+                                {% endfor %}
+                                {% for input in finance_outputs %}
+                                <a href="#">
+                                    <div class="rounded-lg" style="background-color: rgba(255, 255, 255, 0.925);">
+                                        <br><hr>
+                                        <div class="py-1 px-4 grid grid-cols-2 gap-0" style="grid-template-columns: 80% 20%; color: rgba(0, 0, 0, 0.658);">
+                                            <div>
+                                                {% if input.amount_in_usd == 0 %}
+                                                    <p class="text-sm"><strong style="color: rgba(255, 0, 0, 0.644);">Initialisation compte</strong></p>
+                                                {% elif input.amount_in_usd < 0 %}
+                                                    <p class="text-sm"><strong style="color: rgba(255, 0, 0, 0.644);">Erreur !</strong></p>
+                                                {% else %}
+                                                    <p class="text-sm">Versement reussi</p>
+                                                {% endif %}
+                                                <p class="text-sm">Justification: {{ input.argument_explaination }}</p>
+                                                <p class="text-sm">Depuis {{ input.created_at }}</p>
+                                            </div>
+                                            <div>
+                                                <p class="text-center"><strong class="text-xl" style="color: black;">$ {{ input.amount_in_usd }}</strong></p>
+                                                <p class="text-center">{{ input.code }}</p>
+                                            </div>
+                                        </div>
+                                        <hr><br>
+                                    </div>
+                                </a>
+                                {% endfor %}
+                            </div>
+                            
+                            <div>
+                                <h2 class="mb-6 text-xl text-center py-2" style="background-color: rgba(255, 255, 255, 0.486); color: rgba(0, 0, 0, 0.233);">{{ inputs|length }} | {{ finance_inputs|length }} Debits: <strong>$ {{ sum_inputs|floatformat:2 }} | {{ sum_finance_inputs|floatformat:2 }}</h2>
+                                {% for input in inputs %}
+                                <a href="#">
+                                    <div class="rounded-lg" style="background-color: rgba(255, 255, 255, 0.925);">
+                                        <br><hr>
+                                        <div class="py-1 px-4 grid grid-cols-2 gap-0" style="grid-template-columns: 80% 20%; color: rgba(0, 0, 0, 0.658);">
+                                            <div>
+                                                {% if input.amount_in_usd == 0 %}
+                                                    <p class="text-sm" style="color: rgba(255, 0, 0, 0.644);">Initialisation compte</p>
+                                                {% elif input.amount_in_usd < 0 %}
+                                                    <p class="text-sm" style="color: rgba(255, 0, 0, 0.644);">Erreur !</p>
+                                                {% else %}
+                                                    <p class="text-sm">Versement reussi</p>
+                                                {% endif %}
+                                                <p class="text-sm">Justification: {{ input.get_justification_display }}</p>
+                                                <p class="text-sm">Depuis {{ input.created_at }}</p>
+                                            </div>
+                                            <div>
+                                                <p class="text-center"><strong class="text-lg" style="color: black;">$ {{ input.amount_in_usd }}</strong></p>
+                                                <p class="text-center">{{ input.code }}</p>
+                                            </div>
+                                        </div>
+                                        <hr><br>
+                                    </div>
+                                </a>
+                                {% endfor %}
+                                {% for input in finance_inputs %}
+                                <a href="#">
+                                    <div class="rounded-lg" style="background-color: rgba(255, 255, 255, 0.925);">
+                                        <br><hr>
+                                        <div class="py-1 px-4 grid grid-cols-2 gap-0" style="grid-template-columns: 80% 20%; color: rgba(0, 0, 0, 0.658);">
+                                            <div>
+                                                {% if input.amount_in_usd == 0 %}
+                                                    <p class="text-sm" style="color: rgba(255, 0, 0, 0.644);">Initialisation compte</p>
+                                                {% elif input.amount_in_usd < 0 %}
+                                                    <p class="text-sm" style="color: rgba(255, 0, 0, 0.644);">Erreur !</p>
+                                                {% else %}
+                                                    <p class="text-sm">Versement reussi</p>
+                                                {% endif %}
+                                                <p class="text-sm">Justification: {{ input.argument_explaination }}</p>
+                                                <p class="text-sm">Depuis {{ input.created_at }}</p>
+                                            </div>
+                                            <div>
+                                                <p class="text-center"><strong class="text-lg" style="color: black;">$ {{ input.amount_in_usd }}</strong></p>
+                                                <p class="text-center">{{ input.code }}</p>
+                                            </div>
+                                        </div>
+                                        <hr><br>
+                                    </div>
+                                </a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        
+
+                        
+                    </div>
+            </div>
+            
+            <div class="" style="color: rgba(64, 226, 64, 0.842);">
+                <p class="text-sm text-center" style="color: rgba(0, 0, 0, 0.842);">Nombre comptes</p>
+                <p class="text-center" style="font-size: xx-large; font-weight: bold;">{{ persons|length }}</p><br>
+                <p class="text-sm text-center" style="color: rgba(0, 0, 0, 0.842);">Agents bureau</p>
+                <p class="text-center" style="font-size: xx-large; font-weight: bold;">{{ agents_bureau|length }}</p><br>
+                <p class="text-sm text-center" style="color: rgba(0, 0, 0, 0.842);">Locataires</p>
+                <p class="text-center" style="font-size: xx-large; font-weight: bold;">{{ locataires|length }}</p><br>
+                <p class="text-sm text-center" style="color: rgba(0, 0, 0, 0.842);">Ouvriers</p>
+                <p class="text-center" style="font-size: xx-large; font-weight: bold;">{{ labour|length }}</p><br>
+                <p class="text-sm text-center" style="color: rgba(0, 0, 0, 0.842);">Salaires</p>
+                <p class="text-center" style="font-size: xx-large; font-weight: bold;">8455</p><br>
+            </div>
+        </div>
+
+        
+    </div>
+
+{% endblock %}
